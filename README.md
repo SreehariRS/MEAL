@@ -1,12 +1,32 @@
-# React + Vite
+# Meal UMS (React + Vite + Express + MongoDB)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project includes a full-stack User Management System (UMS).
 
-Currently, two official plugins are available:
+## Backend
+- Location: `server/`
+- Tech: Express, Mongoose, JWT
+- Run: `cd server && npm install && npm run dev`
+- Env (`server/.env`):
+```
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/ums
+JWT_SECRET=change_me
+CORS_ORIGIN=http://localhost:5173
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Frontend
+- Location: root `meal/`
+- Run: `npm install && npm run dev`
+- Proxy: Vite proxies `/api` to `http://localhost:5000`
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## API Endpoints
+- Auth:
+  - `POST /api/auth/login`
+  - `POST /api/auth/register`
+  - `GET /api/auth/me`
+- Users (auth required; admin to create/update/delete):
+  - `GET /api/users?q=<search>`
+  - `POST /api/users`
+  - `GET /api/users/:id`
+  - `PUT /api/users/:id`
+  - `DELETE /api/users/:id`
