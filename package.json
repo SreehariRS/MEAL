@@ -8,8 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "cd server && npm run dev",
-    "vercel-build": "vite build"
+    "server": "cd server && npm run dev"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

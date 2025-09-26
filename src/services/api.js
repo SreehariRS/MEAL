@@ -1,11 +1,7 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.PROD
-  ? '/api'
-  : '/api';
-
 export const api = axios.create({
-  baseURL,
+  baseURL: '/api',
 });
 
 export function setAuthToken(token) {
