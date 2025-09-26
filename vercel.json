@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "meal/server/api/index.js", "use": "@vercel/node" },
+    { "src": "meal/package.json", "use": "@vercel/static-build", "config": { "distDir": "meal/dist" } }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/meal/server/api/index.js" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/meal/dist/index.html" }
+  ]
+}
+
+
