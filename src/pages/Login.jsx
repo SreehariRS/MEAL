@@ -32,8 +32,24 @@ export default function Login() {
     navigate('/register');
   };
 
+  const handleHomeRedirect = () => {
+    window.location.href = 'https://meal-psi-lovat.vercel.app/';
+  };
+
   return (
     <div className="page">
+      {/* Home Button */}
+      <div style={{ position: 'absolute', top: '1rem', left: '1rem' }}>
+        <button 
+          type="button" 
+          className="btn btn-link" 
+          onClick={handleHomeRedirect}
+          style={{ textDecoration: 'none', padding: '0.5rem 1rem' }}
+        >
+          ← Home
+        </button>
+      </div>
+
       <div className="page-container" style={{ maxWidth: 480 }}>
         <div className="card">
           <div className="card-header">
