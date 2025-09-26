@@ -44,27 +44,22 @@ app.get('/api/health', (_req, res) => {
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://sreehari:sreehari@meal.67m9n2x.mongodb.net/';
-
+// Connect to MongoDB (this runs on cold start in serverless)
 mongoose
-  .connect(MONGO_URI)
+  .connect(process.env.MONGO_URI || 'mongodb+srv://sreehari:sreehari@meal.67m9n2x.mongodb.net/')
   .then(() => {
+    console.log('MongoDB connected');
+    // Seed on first run (safe to call multiple times)
     seedAdmin().catch((e) => {
       console.error('Admin seeding failed:', e);
     });
     seedSampleUser().catch((e) => {
       console.error('Sample user seeding failed:', e);
     });
-    app.listen(PORT, () => {
-      console.log(`API listening on http://localhost:${PORT}`);
-    });
   })
   .catch((err) => {
     console.error('MongoDB connection error:', err);
-    process.exit(1);
   });
 
+// Export for Vercel Serverless
 export default app;
-
-
