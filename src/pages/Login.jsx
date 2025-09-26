@@ -28,6 +28,10 @@ export default function Login() {
     }
   };
 
+  const handleRegisterRedirect = () => {
+    navigate('/register');
+  };
+
   return (
     <div className="page">
       <div className="page-container" style={{ maxWidth: 480 }}>
@@ -45,12 +49,24 @@ export default function Login() {
               <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="********" />
             </div>
             {error && <div className="alert alert-error">{error}</div>}
-            <button className="btn btn-primary" disabled={loading} type="submit">{loading ? 'Signing in…' : 'Login'}</button>
+            <button className="btn btn-primary" disabled={loading} type="submit">
+              {loading ? 'Signing in…' : 'Login'}
+            </button>
+            
+            {/* Register button */}
+            <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+              <button 
+                type="button" 
+                className="btn btn-secondary" 
+                onClick={handleRegisterRedirect}
+                style={{ width: '100%' }}
+              >
+                Register
+              </button>
+            </div>
           </form>
         </div>
       </div>
     </div>
   );
 }
-
-
